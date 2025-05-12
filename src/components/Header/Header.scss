@@ -1,0 +1,74 @@
+@use "../../globalStyles/variables" as *;
+@use "../../globalStyles/mixins" as *;
+@use "../../globalStyles/animations" as *;
+
+// .header {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: $spacing-lg $spacing-xl;
+//   background-color: $primary-color;
+//   color: $light-color;
+//   box-shadow: $shadow-md;
+//   animation: fadeIn 0.5s ease-out forwards;
+
+//   &__title {
+//     margin: 0;
+//     font-size: 1.5rem;
+//     font-weight: 500;
+//     @include responsive-font(1.2rem, 1.8rem);
+//   }
+
+//   &__actions {
+//     display: flex;
+//     gap: $spacing-md;
+//   }
+
+//   &__button {
+//     @include flex-center;
+//     gap: $spacing-xs;
+//     padding: $spacing-sm $spacing-md;
+//     background-color: rgba($light-color, 0.1);
+//     color: $light-color;
+//     border: none;
+//     border-radius: $border-radius-sm;
+//     cursor: pointer;
+//     transition: all 0.3s ease;
+//     font-family: $font-family-base;
+//     font-size: $font-size-base;
+
+//     &:hover {
+//       background-color: rgba($light-color, 0.2);
+//       transform: translateY(-1px);
+//     }
+
+//     &:active {
+//       transform: translateY(0);
+//     }
+//   }
+
+//   &__buttonIcon {
+//     font-size: 1rem;
+//   }
+// }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-lg $spacing-xl;
+  background-color: $primary-color;
+  color: white;
+  box-shadow: $shadow-md;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-md;
+}

@@ -1,0 +1,34 @@
+@use "../../globalStyles/variables" as *;
+@use "../../globalStyles/mixins" as *;
+@use "../../globalStyles/animations" as *;
+
+.problemAreaItem {
+  @include card-style;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  margin-bottom: $spacing-sm;
+  animation: slideUp 0.5s ease-out forwards;
+  animation-delay: calc(var(--index) * 0.1s);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-md;
+  }
+
+  &__name {
+    flex: 1;
+    @include text-ellipsis;
+    font-size: $font-size-base;
+    color: $dark-color;
+  }
+
+  &__amount {
+    font-weight: bold;
+    color: $danger-color;
+    min-width: 100px;
+    text-align: right;
+    font-family: "Roboto Mono", monospace;
+  }
+}

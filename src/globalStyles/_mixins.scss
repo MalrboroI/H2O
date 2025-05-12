@@ -1,0 +1,37 @@
+@use "./variables" as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive-font($min-size, $max-size) {
+  font-size: clamp($min-size, 2vw, $max-size);
+}
+
+@mixin card-style {
+  background: white;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  padding: $spacing-md;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+@mixin text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin button-reset {
+  border: none;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
