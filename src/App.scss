@@ -1,6 +1,6 @@
-@use "./variables" as *;
-@use "./mixins" as *;
-@use "./animations" as *;
+@use "./globalStyles/variables" as *;
+@use "./globalStyles/mixins" as *;
+@use "./globalStyles/animations" as *;
 
 .app {
   display: flex;

@@ -21,7 +21,7 @@ export interface ChartProps {
 // Интерфейс для элемента финансовых данных
 export interface FinancialDataItem {
   id: string; // Уникальный идентификатор
-  division: string; // Подразделение (B2B, B2C, B28 и т.д.)
+  division: string; // Подразделение (B2B, B2C и т.д.)
   date: string; // Дата в ISO формате
   amount: number; // Сумма (лучше использовать number вместо string)
   type: MoneyOperationType; // Тип операции
@@ -38,19 +38,12 @@ export interface ProblemArea {
 
 // Состояние отчета
 export interface ReportState {
-  financialData: FinancialDataItem[];
-  problemAreas: ProblemArea[];
-  loading: boolean;
-  error: string | null;
-  activeTab: "week" | "month" | "year";
+  financialData: FinancialDataItem[]; // Суммы по дате
+  problemAreas: ProblemArea[]; // Проблемные зоны
+  loading: boolean; // Состояние загрузки
+  error: string | null; // Ошибка
+  activeTab: "week" | "month" | "year"; // Ваыбор периода по таблице
 }
-
-// export interface SummaryCardProps {
-//   title: string;
-//   value: string | number;
-//   percentage?: number;
-//   trend?: "up" | "down" | "neutral";
-// }
 
 export interface HeaderProps {
   title: string;
@@ -59,4 +52,4 @@ export interface HeaderProps {
 
 // Типы для фильтрации данных
 export type TimeRange = "week" | "month" | "year";
-export type DivisionFilter = "all" | "B2B" | "B2C" | "B28";
+export type DivisionFilter = "all" | "B2B" | "B2C";

@@ -1,18 +1,24 @@
 // Цвета
 $primary-color: #2c3e50;
 $secondary-color: #3498db;
-$success-color: #2ecc71;
+$success-color: #27ae60;
 $danger-color: #e74c3c;
 $warning-color: #f39c12;
 $light-color: #ecf0f1;
 $dark-color: #34495e;
 $text-primary: #333;
 $text-secondary: #666;
+$border-color: #e0e0e0;
 
 // Стили шрифтов
 $font-family-base: "Roboto", sans-serif;
 $font-size-base: 16px;
 $line-height-base: 1.5;
+
+// Размеры
+$sidebar-width: 280px;
+$header-height: 80px;
+$card-border-radius: 12px;
 
 // Отступы
 $spacing-xxs: 2px;

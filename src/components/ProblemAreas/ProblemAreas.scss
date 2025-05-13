@@ -2,26 +2,43 @@
 @use "../../globalStyles/mixins" as *;
 
 .problemAreas {
-  @include card-style;
-  margin-top: $spacing-lg;
+  background: white;
+  border-radius: $card-border-radius;
+  padding: 1.5rem;
+  box-shadow: $shadow-sm;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   .title {
-    margin-bottom: $spacing-md;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
     color: $primary-color;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $border-color;
   }
 
   .list {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-xs;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba($dark-color, 0.2);
+      border-radius: 2px;
+    }
   }
 
   .item {
     display: flex;
     justify-content: space-between;
-    padding: $spacing-sm 0;
-    border-bottom: 1px solid rgba($light-color, 0.5);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba($border-color, 0.5);
 
     &:last-child {
       border-bottom: none;
@@ -29,12 +46,20 @@
 
     .name {
       color: $text-primary;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 1rem;
     }
 
     .amount {
-      font-family: monospace;
+      font-weight: 600;
       color: $danger-color;
-      font-weight: 500;
+
+      &::before {
+        content: "₽ ";
+      }
     }
   }
 }

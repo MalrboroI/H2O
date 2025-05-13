@@ -5,27 +5,28 @@ interface SummaryCardProps {
   title: string;
   value: string;
   percentage?: number;
-  trend?: "up" | "down" | "neutral";
+  trend?: "up" | "down";
+  active?: boolean;
+  onClick?: () => void;
 }
 
 const SummaryCard: React.FC<SummaryCardProps> = ({
   title,
   value,
   percentage,
-  trend = "neutral",
+  trend = "up",
+  active = false,
+  onClick,
 }) => {
   return (
-    <div className={`${"card"} ${["trend"]}`}>
-      <div className={"trendIcon"}>
-        {trend === "up" ? "↑" : trend === "down" ? "↓" : ""}
-      </div>
-      <div className="value">P {value}</div>
-      <div className="title">{title}</div>
-      {percentage && (
-        <div className="percentage">
+    <div className={`${"card"} ${active ? "active" : ""}`} onClick={onClick}>
+      {percentage !== undefined && (
+        <div className={`${"trendIndicator"} ${["trend"]}`}>
           {trend === "up" ? "↑" : "↓"} {percentage}%
         </div>
       )}
+      <div className={"value"}>{value}</div>
+      <div className={"title"}>{title}</div>
     </div>
   );
 };

@@ -3,19 +3,20 @@
 
 .tabs {
   display: flex;
-  gap: $spacing-xs;
-  background: rgba($light-color, 0.3);
-  padding: $spacing-xs;
+  gap: 0.5rem;
+  background: white;
+  padding: 0.5rem;
   border-radius: $border-radius-md;
-  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
 
   .tab {
     @include button-reset;
-    padding: $spacing-sm $spacing-md;
+    padding: 0.5rem 1rem;
     border-radius: $border-radius-sm;
     font-size: 0.9rem;
     transition: all 0.2s ease;
     color: $text-secondary;
+    background: none;
 
     &:hover {
       background: rgba($secondary-color, 0.1);
