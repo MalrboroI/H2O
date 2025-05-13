@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <nav className={`${"sidebar"} ${isOpen ? "open" : ""}`}>
-        <div className="logo">Аналитика</div>
+        <div className="logo">Аналитика H2O</div>
         <ul className="menu">
           <li>
             <NavLink

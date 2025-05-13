@@ -1,68 +1,90 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import ReportStore from "../store/ReportStore";
+import { useStore } from "../store/StoreProvider";
+// import ReportStore from "../store/ReportStore";
 import Chart from "../components/Chart/FinancialChart";
 import ProblemAreas from "../components/ProblemAreas/ProblemAreas";
 import SummaryCard from "../components/SummaryCard/SummaryCard";
 import PeriodTabs from "../components/PeriodTabs/PeriodTabs";
 import "./Dashboard.scss";
 
-interface DashboardProps {
-  reportStore: ReportStore;
-}
+const Dashboard: React.FC = observer(() => {
+  const { reportStore } = useStore();
+  const { total, b2b, b2c } = reportStore.summary;
+  const { income, expenses, profit, debt } = reportStore.generalStats;
 
-const Dashboard: React.FC<DashboardProps> = observer(({ reportStore }) => {
+  const formatNumber = (num: number) => {
+    return new Intl.NumberFormat("ru-RU").format(Math.round(num));
+  };
+
   return (
     <div className="dashboard">
-      <div className="summarySection">
-        <SummaryCard
-          title="Итоги"
-          value="10 157 764"
-          percentage={215}
-          trend="up"
-        />
-        <SummaryCard
-          title="В28"
-          value="8 615 253"
-          percentage={43.7}
-          trend="up"
-        />
-        <SummaryCard
-          title="В2С"
-          value="1 542 511"
-          percentage={12.3}
-          trend="down"
-        />
+      <div className="mainContent">
+        <div className="summarySection">
+          <SummaryCard
+            title="Итоги"
+            value={formatNumber(total).replace(" ₽", "")}
+            percentage={Math.round((total / (b2b + b2c)) * 100 - 100)}
+            trend={total >= b2b + b2c ? "up" : "down"}
+            active={reportStore.activeDivision === "all"}
+            onClick={() => reportStore.setActiveDivision("all")}
+          />
+          <SummaryCard
+            title="B2B"
+            value={formatNumber(b2b).replace(" ₽", "")}
+            percentage={Math.round((b2b / (b2b + b2c)) * 100)}
+            trend="up"
+            active={reportStore.activeDivision === "B2B"}
+            onClick={() => reportStore.setActiveDivision("B2B")}
+          />
+          <SummaryCard
+            title="B2C"
+            value={formatNumber(b2c).replace(" ₽", "")}
+            percentage={Math.round((b2c / (b2b + b2c)) * 100)}
+            trend={b2c > 0 ? "up" : "down"}
+            active={reportStore.activeDivision === "B2C"}
+            onClick={() => reportStore.setActiveDivision("B2C")}
+          />
+        </div>
+
+        <div className="chartContainer">
+          <div className="periodTabs">
+            <PeriodTabs
+              activeTab={reportStore.activeTab}
+              onChange={(tab) => reportStore.setActiveTab(tab)}
+            />
+          </div>
+          <Chart />
+        </div>
+
+        <div className="generalStats">
+          <div className="statsRow">
+            <div className="statItem">
+              <span>Выручка</span>
+              <strong>{formatNumber(income)}</strong>
+            </div>
+            <div className="statItem">
+              <span>Затраты</span>
+              <strong>{formatNumber(expenses)}</strong>
+            </div>
+            <div className="statItem">
+              <span>Прибыль</span>
+              <strong>{formatNumber(profit)}</strong>
+            </div>
+            <div className="statItem">
+              <span>Задолженность</span>
+              <strong>{formatNumber(debt)}</strong>
+            </div>
+            <div className="statItem">
+              <span>Итог</span>
+              <strong>{formatNumber(income + profit)}</strong>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="generalStats">
-        <div className="statItem">
-          <span>Выручка</span>
-          <strong>P 8 615 253</strong>
-        </div>
-        <div className="statItem">
-          <span>Прибыль</span>
-          <strong>P 5 342 876</strong>
-        </div>
-        <div className="statItem">
-          <span>Заказы</span>
-          <strong>1 245</strong>
-        </div>
-      </div>
-
-      <PeriodTabs
-        activeTab={reportStore.activeTab}
-        onChange={(tab) => reportStore.setActiveTab(tab)}
-      />
-
-      <Chart activeTab={reportStore.activeTab} />
-
-      <div className="statsGrid">
-        <ProblemAreas />
-        <div className="statCard">
-          <h3>Конверсия</h3>
-          <div className="statValue">12.4%</div>
-        </div>
+      <div className="problemAreasContainer">
+        <ProblemAreas problemAreas={reportStore.problemAreas} />
       </div>
     </div>
   );

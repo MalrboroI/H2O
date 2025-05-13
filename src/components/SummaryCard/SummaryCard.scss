@@ -3,52 +3,63 @@
 @use "../../globalStyles/animations" as *;
 
 .card {
-  @include card-style;
-  border-left: 4px solid $light-color;
-  padding: $spacing-md;
+  background: white;
+  border-radius: $card-border-radius;
+  padding: 1.5rem;
+  box-shadow: $shadow-sm;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid $border-color;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  text-align: center;
 
-  &.up {
-    border-color: $success-color;
-
-    .trendIcon,
-    .percentage {
-      color: $success-color;
-    }
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-md;
   }
 
-  &.down {
-    border-color: $danger-color;
-
-    .trendIcon,
-    .percentage {
-      color: $danger-color;
-    }
+  &.active {
+    border: 2px solid $secondary-color;
+    background-color: rgba($secondary-color, 0.05);
   }
 
-  .trendIcon {
+  .trendIndicator {
     position: absolute;
-    top: $spacing-md;
-    right: $spacing-md;
-    font-size: 1.2rem;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+
+    &.up {
+      color: $success-color;
+      background-color: rgba($success-color, 0.1);
+    }
+
+    &.down {
+      color: $danger-color;
+      background-color: rgba($danger-color, 0.1);
+    }
   }
 
   .value {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: $spacing-sm 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    color: $primary-color;
+
+    &::before {
+      content: "₽ ";
+      font-size: 0.8em;
+      font-weight: normal;
+    }
   }
 
   .title {
     color: $text-secondary;
-    font-size: 0.9rem;
-  }
-
-  .percentage {
-    margin-top: $spacing-xs;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 500;
   }
 }
