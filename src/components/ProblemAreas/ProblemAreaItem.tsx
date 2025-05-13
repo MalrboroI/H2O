@@ -1,27 +1,16 @@
 import React from "react";
-import "./ProblemAreaItem.scss";
+// import "./ProblemAreas.scss";
 
 interface ProblemAreaItemProps {
   name: string;
-  amount: number;
-  index: number;
+  amount: string;
 }
 
-const ProblemAreaItem: React.FC<ProblemAreaItemProps> = ({
-  name,
-  amount,
-  index,
-}) => {
-  // Форматируем сумму с разделителями тысяч
-  const formattedAmount = new Intl.NumberFormat("ru-RU").format(amount);
-
+const ProblemAreaItem: React.FC<ProblemAreaItemProps> = ({ name, amount }) => {
   return (
-    <div
-      className="problemAreaItem"
-      style={{ "--index": index } as React.CSSProperties}
-    >
-      <span className="problemAreaItem__name">{name}</span>
-      <span className="problemAreaItem__amount">{formattedAmount}</span>
+    <div className="item">
+      <span className="name">{name}</span>
+      <span className="amount">P {amount}</span>
     </div>
   );
 };

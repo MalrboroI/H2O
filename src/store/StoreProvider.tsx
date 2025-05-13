@@ -7,7 +7,6 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const rootStore = new RootStore();
-
   return (
     <StoreContext.Provider value={rootStore}>{children}</StoreContext.Provider>
   );

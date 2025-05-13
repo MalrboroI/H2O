@@ -1,0 +1,118 @@
+@use "../../globalStyles/variables" as *;
+@use "../../globalStyles/mixins" as *;
+@use "../../globalStyles/animations" as *;
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: $primary-color;
+  color: white;
+  padding: $spacing-lg 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  box-shadow: $shadow-md;
+
+  @media (max-width: $breakpoint-md) {
+    transform: translateX(-100%);
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0 $spacing-xl $spacing-xl;
+  margin-bottom: $spacing-md;
+  border-bottom: 1px solid rgba(white, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(white, 0.2);
+    border-radius: $border-radius-sm;
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md $spacing-xl;
+  color: rgba(white, 0.8);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  position: relative;
+  animation: slideUp 0.5s ease-out forwards;
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * 0.1s;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(white, 0.05);
+    color: white;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: $secondary-color;
+    transform: scaleY(0);
+    transition: transform 0.2s ease;
+  }
+
+  &.active {
+    color: white;
+    background-color: rgba(white, 0.1);
+
+    &::before {
+      transform: scaleY(1);
+    }
+  }
+}
+
+.toggleButton {
+  @include button-reset;
+  position: absolute;
+  right: -40px;
+  top: $spacing-md;
+  width: 32px;
+  height: 32px;
+  background-color: $primary-color;
+  border-radius: 0 $border-radius-sm $border-radius-sm 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: $shadow-md;
+  cursor: pointer;
+
+  @media (max-width: $breakpoint-md) {
+    display: flex;
+  }
+}

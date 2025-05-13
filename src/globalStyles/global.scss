@@ -1,0 +1,28 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./animations" as *;
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $text-primary;
+  line-height: $line-height-base;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.loading,
+.error {
+  @include flex-center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: $dark-color;
+}
+
+.error {
+  color: $danger-color;
+}

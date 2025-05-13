@@ -2,93 +2,53 @@
 @use "../../globalStyles/mixins" as *;
 @use "../../globalStyles/animations" as *;
 
-// .summaryCard {
-//   @include card-style;
-//   padding: $spacing-lg;
-//   text-align: center;
-//   animation: fadeIn 0.6s ease-out forwards;
-//   animation-delay: calc(var(--index) * 0.15s);
-
-//   &__title {
-//     color: $dark-color;
-//     font-size: 1rem;
-//     margin-bottom: $spacing-sm;
-//     font-weight: 500;
-//   }
-
-//   &__value {
-//     font-size: 1.8rem;
-//     font-weight: bold;
-//     color: $primary-color;
-//     margin-bottom: $spacing-xs;
-//     @include responsive-font(1.4rem, 2rem);
-//   }
-
-//   &__percentage {
-//     display: inline-block;
-//     padding: $spacing-xs $spacing-sm;
-//     background-color: rgba($success-color, 0.1);
-//     color: $success-color;
-//     border-radius: $border-radius-sm;
-//     font-weight: 500;
-//     font-size: 0.9rem;
-//   }
-// }
-
-.summaryCard {
+.card {
   @include card-style;
-  padding: $spacing-lg;
-  text-align: center;
+  border-left: 4px solid $light-color;
+  padding: $spacing-md;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 
-  &.trend-up {
-    border-top: 3px solid $success-color;
+  &.up {
+    border-color: $success-color;
+
+    .trendIcon,
+    .percentage {
+      color: $success-color;
+    }
   }
 
-  &.trend-down {
-    border-top: 3px solid $danger-color;
+  &.down {
+    border-color: $danger-color;
+
+    .trendIcon,
+    .percentage {
+      color: $danger-color;
+    }
   }
 
-  &.trend-neutral {
-    border-top: 3px solid $secondary-color;
-  }
-}
-
-.title {
-  color: $dark-color;
-  font-size: 1rem;
-  margin-bottom: $spacing-sm;
-  font-weight: 500;
-}
-
-.value {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: $primary-color;
-  margin-bottom: $spacing-xs;
-  @include responsive-font(1.4rem, 2rem);
-}
-
-.percentage {
-  display: inline-block;
-  padding: $spacing-xs $spacing-sm;
-  border-radius: $border-radius-sm;
-  font-weight: 500;
-  font-size: 0.9rem;
-
-  .trend-up & {
-    background-color: rgba($success-color, 0.1);
-    color: $success-color;
+  .trendIcon {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    font-size: 1.2rem;
   }
 
-  .trend-down & {
-    background-color: rgba($danger-color, 0.1);
-    color: $danger-color;
+  .value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: $spacing-sm 0;
   }
 
-  .trend-neutral & {
-    background-color: rgba($secondary-color, 0.1);
-    color: $secondary-color;
+  .title {
+    color: $text-secondary;
+    font-size: 0.9rem;
+  }
+
+  .percentage {
+    margin-top: $spacing-xs;
+    font-size: 0.8rem;
+    font-weight: 500;
   }
 }

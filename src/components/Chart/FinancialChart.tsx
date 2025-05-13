@@ -1,11 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import {
-  Chart as ChartJS,
-  // type ChartData,
-  type ChartOptions,
-} from "chart.js/auto";
-// import { useStore } from "../../store/Hooks/useStore";
-// import { observer } from "mobx-react-lite";
+import { Chart as ChartJS, type ChartOptions } from "chart.js/auto";
 import { TimeRange, ChartProps } from "../../globalTypes/types";
 import "./FinancialChart.scss";
 

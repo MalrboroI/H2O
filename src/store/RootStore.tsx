@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { ReportStore } from "./reportStore";
+import ReportStore from "./ReportStore";
 
 class RootStore {
   reportStore: ReportStore;

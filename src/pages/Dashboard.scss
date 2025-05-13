@@ -1,0 +1,67 @@
+@use "../globalStyles/variables" as *;
+@use "../globalStyles/mixins" as *;
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.summarySection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-lg;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.generalStats {
+  @include card-style;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+  padding: $spacing-lg;
+
+  .statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      color: $text-secondary;
+      font-size: 0.9rem;
+      margin-bottom: $spacing-xs;
+    }
+
+    strong {
+      font-size: 1.2rem;
+      color: $primary-color;
+    }
+  }
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: $spacing-lg;
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  @include card-style;
+  padding: $spacing-lg;
+
+  h3 {
+    margin-bottom: $spacing-md;
+    color: $text-secondary;
+    font-size: 1rem;
+  }
+
+  .statValue {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $primary-color;
+  }
+}

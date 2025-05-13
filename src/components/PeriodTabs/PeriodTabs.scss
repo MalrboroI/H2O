@@ -1,0 +1,31 @@
+@use "../../globalStyles/variables" as *;
+@use "../../globalStyles/mixins" as *;
+
+.tabs {
+  display: flex;
+  gap: $spacing-xs;
+  background: rgba($light-color, 0.3);
+  padding: $spacing-xs;
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-lg;
+
+  .tab {
+    @include button-reset;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-sm;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    color: $text-secondary;
+
+    &:hover {
+      background: rgba($secondary-color, 0.1);
+      color: $primary-color;
+    }
+
+    &.active {
+      background: $secondary-color;
+      color: white;
+      font-weight: 500;
+    }
+  }
+}

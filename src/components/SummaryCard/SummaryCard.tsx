@@ -1,28 +1,12 @@
 import React from "react";
-import { SummaryCardProps } from "../../globalTypes/types";
 import "./SummaryCard.scss";
 
-// interface SummaryCardProps {
-//   title: string;
-//   value: string;
-//   percentage?: number;
-// }
-
-// const SummaryCard: React.FC<SummaryCardProps> = ({
-//   title,
-//   value,
-//   percentage,
-// }) => {
-//   return (
-//     <div className="summaryCard">
-//       <h3 className="summaryCard__title">{title}</h3>
-//       <div className="summaryCard__value">{value}</div>
-//       {percentage && (
-//         <div className="summaryCard__percentage">{percentage}%</div>
-//       )}
-//     </div>
-//   );
-// };
+interface SummaryCardProps {
+  title: string;
+  value: string;
+  percentage?: number;
+  trend?: "up" | "down" | "neutral";
+}
 
 const SummaryCard: React.FC<SummaryCardProps> = ({
   title,
@@ -30,18 +14,16 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
   percentage,
   trend = "neutral",
 }) => {
-  const formattedValue =
-    typeof value === "number"
-      ? new Intl.NumberFormat("ru-RU").format(value)
-      : value;
-
   return (
-    <div className={`${"summaryCard"} ${[`trend-${"trend"}`]}`}>
-      <h3 className="title">{title}</h3>
-      <div className="value">{formattedValue}</div>
+    <div className={`${"card"} ${["trend"]}`}>
+      <div className={"trendIcon"}>
+        {trend === "up" ? "↑" : trend === "down" ? "↓" : ""}
+      </div>
+      <div className="value">P {value}</div>
+      <div className="title">{title}</div>
       {percentage && (
         <div className="percentage">
-          {trend === "up" ? "↑" : trend === "down" ? "↓" : ""} {percentage}%
+          {trend === "up" ? "↑" : "↓"} {percentage}%
         </div>
       )}
     </div>

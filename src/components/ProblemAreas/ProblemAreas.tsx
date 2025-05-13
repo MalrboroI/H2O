@@ -1,28 +1,33 @@
 import React from "react";
-import { observer } from "mobx-react-lite";
-import { useStore } from "../../store/Hooks/useStore";
-import { type ProblemArea } from "../../globalTypes/types";
 import ProblemAreaItem from "./ProblemAreaItem";
 import "./ProblemAreas.scss";
 
-const ProblemAreas: React.FC = observer(() => {
-  const { reportStore } = useStore();
+interface ProblemArea {
+  name: string;
+  amount: string;
+}
+
+const ProblemAreas: React.FC = () => {
+  const problems: ProblemArea[] = [
+    { name: "Низкая конверсия", amount: "1 542 511" },
+    { name: "Высокие расходы", amount: "892 456" },
+    { name: "Проблемы с доставкой", amount: "567 890" },
+  ];
 
   return (
     <div className="problemAreas">
-      <h2 className="problemAreas__title">Проблемные зоны</h2>
-      <div className="problemAreas__list">
-        {reportStore.problemAreas.map((area: ProblemArea, index: number) => (
+      <h3 className="title">Проблемные зоны</h3>
+      <div className="list">
+        {problems.map((problem, index) => (
           <ProblemAreaItem
             key={index}
-            name={area.name}
-            amount={area.amount}
-            index={index}
+            name={problem.name}
+            amount={problem.amount}
           />
         ))}
       </div>
     </div>
   );
-});
+};
 
 export default ProblemAreas;
